@@ -1,0 +1,174 @@
+	<html>
+
+<head>
+</head>
+
+<body>
+	<canvas id="painting" width="400" height="400" style="border: solid 1px black;">
+		Twoja przeglądarka jest przestarzała.
+	</canvas>
+	<div>
+		<h1>WITAMY W PAINT</h1>
+		<h3>Aplikacja ma za zadanie przedstawienie painta w wersji 1.0. W aplikacji będą dostępne funkcje wyboru grubości linii, koloru linii, możliwość wyboru gumki lub pióra, oraz możliwość wyczyszczenia płótna. </h3>
+		<h4>Wybierz grubość linii: </h4>
+		<p>Pozwala wybrać nam jaką długością linii będziemy się posługiwać.</p>
+		<button id="bwaska">BWaska</button>
+		<button id="waska">Waska</button>
+		<button id="srednia">Srednia</button>
+		<button id="gruba">Gruba</button>
+		<button id="bgruba">BGruba</button>
+	</div>
+
+	<div>
+		<h4>Wybierz kolor linii: </h4>
+		<p>Pozwala wybrać nam jakim kolorem linii będziemy się posługiwać.</p>
+		<button id="braz">Braz</button>
+		<button id="zielony">Zielony</button>
+		<button id="zolty">Zolty</button>
+		<button id="fioletowy">Fioletowy</button>
+		<button id="czarny">Czarny</button>
+		<button id="czerwony">Czerwony</button>
+		<button id="rozowy">Rozowy</button>
+	</div>
+
+	<div>
+		<h4>Dodatkowe komponenty: </h4>
+		<p>Pozwala wybrać nam przełączanie się między gumką, a piórem, oraz daje możliwość wyczyszczenia całego płótna.</p>
+		<button id="czysc">Czyść</button>
+		<button id="gumka">Gumka</button>
+		<button id="pioro">Pióro</button>
+		
+	<script type="text/javascript">
+		var clickX = new Array();
+		var clickY = new Array();
+		var clickDrag = new Array();
+		var paint = false;
+		var canvas = document.getElementById('painting');
+		var context = canvas.getContext('2d');
+		var wartoscFioletowy = "#cb3594";
+		var wartoscZielony = "#659b41";
+		var wartoscZolty = "#ffcf33";
+		var wartoscBraz = "#986928";
+		var wartoscCzarny = "#000000";
+		var wartoscCzerwony = "#FF0000";
+		var wartoscRozowy = "#FFC0CB";
+		var aktywnyKolor = wartoscCzarny;
+		var wybierzKolor = new Array();
+		var wybierzRozmiar= new Array();
+		var aktywnyRozmiar = 2;
+		var aktualnaSzerokosc = canvas.width;
+		var aktualnaWysokosc = canvas.height;
+		var wczesniejszyKolor = null;
+		
+		czysc.onclick = function () {
+			clickX = new Array();
+			clickY = new Array();
+			clickDrag = new Array();
+			wybierzKolor = new Array();
+			redraw();
+		}
+		//FUNKCJE WYBORU GRUBOSCI LINII.
+		bwaska.onclick = function () {
+			aktywnyRozmiar = 1;
+		}
+		waska.onclick = function () {
+			aktywnyRozmiar = 3;
+		}
+		srednia.onclick = function () {
+			aktywnyRozmiar = 6;
+		}
+		gruba.onclick = function () {
+			aktywnyRozmiar = 10;
+		}
+		bgruba.onclick = function () {
+			aktywnyRozmiar = 15;
+		}
+		//FUNKCJE WYBORU KOLORU LINIII.
+		czarny.onclick = function () {
+			aktywnyKolor = wartoscCzarny;
+		}
+		braz.onclick = function () {
+			aktywnyKolor = wartoscBraz;
+		}
+		fioletowy.onclick = function () {
+			aktywnyKolor = wartoscFioletowy;
+		}
+		zielony.onclick = function () {
+			aktywnyKolor = wartoscZielony;
+		}
+		zolty.onclick = function () {
+			aktywnyKolor = wartoscZolty;
+		}
+		czerwony.onclick = function () {
+			aktywnyKolor = wartoscCzerwony;
+		}
+		rozowy.onclick = function () {
+			aktywnyKolor = wartoscRozowy;
+		}
+		
+		//FUNKCJA KTORA POZWALA UZYWAC GUMKI, POPROSTU MALOWANIE KOLOREM BIALYM.
+		gumka.onclick = function () {
+			wczesniejszyKolor = aktywnyKolor;
+			aktywnyKolor = "#ffffff";
+		}
+		//Przełączanie między gumką a piórem
+		pioro.onclick = function () {
+			if (wczesniejszyKolor != null) {
+				aktywnyKolor = wczesniejszyKolor;
+			}
+			else {
+				return;
+			}
+		}
+		//PONIŻEJ ZNAJDUJĄ SIĘ FUNKCJE Z PFG PANA DOKTORA.
+		canvas.onmousedown = function (e) {
+			paint = true;
+			addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, false);
+			redraw();
+		}
+		//OGRANICZENIE MALOWANIA PO PŁÓTNIE,tutaj tylko małe zmiany
+		canvas.onmousemove = function (e) {
+			if (paint) {
+				if ((e.pageX >= 0 && e.pageX <= 400) && (e.pageY >= 0 && e.pageY <= 400)) {
+					addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+					redraw();
+				}
+				else {
+					paint = false;
+				}
+			}
+		}
+		canvas.onmouseup = function () {
+			paint = false;
+		}
+		function addClick(x, y, dragging) {
+			clickX.push(x);
+			clickY.push(y);
+			clickDrag.push(dragging);
+			wybierzKolor.push(aktywnyKolor);
+			wybierzRozmiar.push(aktywnyRozmiar);
+		}
+		function redraw() {
+			context.clearRect(0, 0, 400, 400);
+			context.lineJoin = "round";
+			for (var i = 0; i < clickX.length; i++) {
+				context.beginPath();
+				if (clickDrag[i]) {
+					context.moveTo(clickX[i - 1], clickY[i - 1]);
+				} else {
+					context.moveTo(clickX[i], clickY[i]);
+				}
+				context.lineTo(clickX[i], clickY[i]);
+				context.closePath();
+				context.strokeStyle = wybierzKolor[i];
+				context.lineWidth = wybierzRozmiar[i];
+				context.stroke();
+			}
+		}
+		function reset() {
+			context.clearRect(0, 0, 400, 400);
+		}
+	</script>
+</body>
+
+</html>

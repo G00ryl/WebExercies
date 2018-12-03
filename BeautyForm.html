@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body{
+	background-color: gray; 
+	margin-left: 240px;
+	margin-right: 240px;
+	}	
+div.centerForm{
+text-align: center;
+margin-top: 200px;
+}
+form 
+{ 
+	background-color: lightblue; border-radius: 30px; border:1px solid blackc;
+ }
+#submit
+{
+	padding: 10px;
+	font-size: 18px;
+	background-color: green;
+	border-radius: 12px;
+	font-weight: bolder;
+	border-color: black;
+	color: white;
+	transition: background-color 2s ease 0s;
+}
+#reset
+{
+	padding: 10px;
+	font-size: 18px;
+	background-color: red;
+	border-radius: 12px;
+	font-weight: bolder;
+	border-color: black;
+	color: white
+}
+#submit:hover
+{
+	background-color: gray;
+}
+#reset:hover
+{
+	background-color: gray;
+}
+p.fullnamesolid
+{
+	
+	border-radius: 10px
+	border-style: solid;
+    border-width: 5px;
+	border-radius: 12px;
+	background-color: green;
+	width   : 200px;
+  height  : 25px;   
+  position: relative;
+	margin-top: 20px;
+    margin-bottom: 5px;
+    margin-right: 400px;
+    margin-left: 620px;
+}
+p.line2Solid
+{
+	border-radius: 10px
+	border-style: solid;
+    border-width: 5px;
+	border-radius: 12px;
+	background-color: green;
+	width   : 200px;
+  height  : 45px;   
+  position: relative;
+	margin-top: 20px;
+    margin-bottom: 5px;
+    margin-right: 400px;
+    margin-left: 620px;
+}
+</style>
+</head>
+<body>
+<div class="centerForm">
+<form name="formulae" id="formul" action="http://tomaszx.pl/materialy/test_przesylania.php" method="POST" >
+	<h1>Wypełnij poniższe pola by się zarejestrować: </h1>
+	<h2>Pola oznaczone gwiazką są wymagane! </h2>
+	<p class="fullnamesolid">Imie i nazwisko* </p>
+	<input type="text" id="fullname" name="nick" placeholder="Imie i nazwisko" required>
+	<p class="fullnamesolid">Wybierz date urodzenia: * </p>
+	<input type="date" name="data_urodzenia" required>
+	<p class="fullnamesolid">Adres e-mail*: </p>
+	<input type="text" id="email" name="email" placeholder="E-mail" required>
+	<p class="fullnamesolid">Haslo*: </p>
+	<input type="password" id="haslo" name="haslo" placeholder="Haslo" required>
+	<p class="fullnamesolid">Numer telefonu*: </p>
+	<input type="tel" id="nrtel" name="tel" title =" Twoj numer telefonu musi posiadac 9 cyfr" placeholder="Telefon"   pattern="[0-9]{9}" maxlength="9" required>
+	<p class="line2Solid">Wybierz czy jesteś kobietą, czy mężczyzną: </p>
+	<input type="radio" name="gender" value="Facet" checked="checked"> Mężczyzna </br>
+	<input type="radio" name="gender" value="Kobita"> Kobieta </br>
+	<input type="checkbox" name="regulamin" value="Regulamin" required> Akceptuję warunki regulaminu naszego sklepu internetowego* </br> 
+	<br>
+	<br>
+	<button type="submit" id="submit">Zarejestruj</button>   
+	<input type="reset" value="Reset" id="reset">
+</form>
+<script type="text/javascript">
+	var nick = document.getElementById("nick");
+	var www = document.getElementById("www");
+	var email = document.getElementById("email");
+	var nrgg = document.getElementById("nrgg");
+	var uwaga = "";
+</script>
+</body>
+</html>
+

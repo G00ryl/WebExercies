@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body background="moja.jpg">	
+</body>
+<h1 style="color:yellow;"> ODTWARZANIE UTWÓRÓW AUDIO LOSOWO: </h1>
+<h3 style="color:green;">Odtwarzacz miał na celu zmieniać wybrany utwór po 30 sekundach i przeskakiwać na inny, który miał zaczynać się w randomowym miejscu</h3>
+<p style="color:green;"><big><b> Do stworzenia przeskakiwania po utworze, a w zasadzie nie tyle co do samego przeskakiwania, co do przeskakiwania generwoania randomo wybranego miejsca w utworze, ale przedewszystkim po jakim czasie ma się to wszystko dziać, to umożliwia nam właśnie metoda window.setInterwal, znalazłem ją na stronie: <a href="https://www.w3schools.com/jsref/met_win_setinterval.asp"> cały opis funkcji</a ></b></big></p>
+<h4 style="color:green;"><big> Miłego słuchania!</big> </h4>
+<audio id="audio" autoplay controls>
+	<source id="tytul" src="George Ezra - Shotgun.mp3">
+	Your browser does not support the audio tag.
+</audio>
+<script>
+	var piosenki = ["George Ezra - Shotgun.mp3", "Calum Scott- You Are The Reason.mp3", "Post Malone - Better Now.mp3", "Maroon 5 - Girls Like You.mp3", "Ed Sheeran - Happier.mp3", "Bebe Rexha - Self Control.mp3", ]
+	var muzyka = document.getElementById("audio");
+	var tytul = document.getElementById("tytul");
+	var aktualnieGrana = 0;
+	var nastepnaGrana;
+	window.setInterval(function () {
+		var czasStartu = Math.floor(Math.random() * 100);//Math.floor, funkcja służąca do zaookrąglania liczby
+		do {nastepnaGrana = Math.floor(Math.random() * 6);
+		} while (nastepnaGrana == aktualnieGrana)
+		tytul.src = piosenki[nastepnaGrana];
+		aktualnieGrana = nastepnaGrana;
+		muzyka.load();
+		muzyka.currentTime = czasStartu;
+		muzyka.play();
+	}, 31800); //czas przeskoku Dopiero po ustawieniu takiej wartości przeskakuje po 30 sekundach, prawdobnie te 1.8 sek jest spowodowane opuznieniem zwiazanem z czasem wlaczania utworu.
+</script>
+</html>

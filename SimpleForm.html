@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body{
+	background-color: lightblue; 
+}	
+</style>
+</head>
+<body>
+
+<form name="formulae" id="formul" action="http://tomaszx.pl/materialy/test_przesylania.php" method="POST">
+	<h1>Proszę wypełnić formularz rejestracyjny:</h1>
+	<p>Prosze podac swoj nick: </p>
+	<input type="text" id="nick" name="nick" value="Twoj nick" onfocus="this.value=''">
+	<p>Prosze podac swoj adres strony www: </p>
+	<input type="text" id="www" name="www" value="Twoj adres WWW" onfocus="this.value=''">
+	<p>Prosze podac swoj adres email: </p>
+	<input type="text" id="email" name="email" value="Twoj adres e-mail" onfocus="this.value=''">
+	<p>Prosze podac swoj numerGG: </p>
+	<input type="text" id="nrgg" name="nrgg" value="Twoj numer Gadu-Gadu" onfocus="this.value=''">
+	<p> Wprowadz komentarz(Opcjonalne): </p>
+	<input type="text" name ="comment" id="comment"  value="Jesli chcesz wprowadz komentarz" maxlength="1250" style="height:30px;width:1000px;" onfocus="this.value=''">
+	<br>
+	<br>
+	
+	<button type="submit" onclick="return easyValidation()">OK</button>
+	<input type="reset" value="Reset">
+</form>
+
+<script type="text/javascript">
+	var nick = document.getElementById("nick");
+	var www = document.getElementById("www");
+	var email = document.getElementById("email");
+	var nrgg = document.getElementById("nrgg");
+	var uwaga = "";
+	
+	function easyValidation() {
+		if (nick.value.length < 1 || nick.value=="Twoj nick") {
+			uwaga += "Wpisz swoj Nickname!!! \n";
+		} 
+		if (www.value.length < 1 || www.value=="Twoj adres WWW") {
+			uwaga += "Wpisz swoj adres WWW!!! \n";
+		} 
+		if (email.value.length < 1 || email.value=="Twoj adres e-mail") {
+			uwaga += "Wpisz swoj adres e-mail!!! \n";
+		}
+		if (nrgg.value.length < 1 || nrgg.value== "Twoj numer Gadu-Gadu") {
+			uwaga += "Wpisz swoj adres numer Gadu-Gadu!! \n";
+		} 
+		if (uwaga == "") {
+			uwaga = "";
+			return true;
+		}
+		alert(uwaga);
+		uwaga = "";
+		return false;		
+	};
+</script>
+</body>
+</html>
+

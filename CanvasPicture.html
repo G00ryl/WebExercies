@@ -1,0 +1,168 @@
+<html>
+<head>
+</head>
+<body>
+	<canvas id="canvas" style="border: 1px solid; background: green" width="300" height="300">
+	</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		function niebo() {
+			context.beginPath();
+			context.rect(0, 0, 300, 170);
+			context.strokeStyle = '#000080';
+			context.lineWidth = 0;
+			context.fillStyle = '#000080';
+			context.fill();
+			context.stroke();
+			komin();
+		}
+		function slonce() {
+			context.beginPath();
+			context.arc(30, 20, 30, 0, 2 * Math.PI);
+			context.strokeStyle = '#fcf158';
+			context.lineWidth = 4;
+			context.fillStyle = '#fcf158';
+			context.fill();
+			context.stroke();
+		}
+		function dom() {
+			context.beginPath();
+			context.rect(110, 120, 190, 60);
+			context.strokeStyle = '#160c02';
+			context.lineWidth = 1;
+			context.fillStyle = '#CD853F';
+			context.fill();
+			context.stroke();	
+		}
+		function daszek() {
+			context.beginPath();
+			context.moveTo(100, 120);
+			context.lineTo(120, 80);
+			context.lineTo(300, 80);
+			context.lineTo(300, 100);
+			context.lineTo(300, 120)
+			context.closePath();
+			context.strokeStyle = '#160c02';
+			context.lineWidth = 1;
+			context.fillStyle = '#A52A2A';
+			context.fill();
+			context.stroke();
+		}
+		function drzwi1() {
+			context.beginPath();
+			context.rect(190, 135, 20, 45);
+			context.strokeStyle = '#000000';
+			context.lineWidth = 2;
+			context.fillStyle = '#8B4513';
+			context.fill();
+			context.stroke();
+		}
+		function drzwi2() {
+			context.beginPath();
+			context.rect(212, 135, 20, 45);
+			context.strokeStyle = '#000000';
+			context.lineWidth = 2;
+			context.fillStyle = '#8B4513';
+			context.fill();
+			context.stroke();
+		}
+		function klamkakulka(x,y){
+			context.beginPath();
+			context.arc(x+205,y+ 155, 1, 0, 2 * Math.PI);
+			context.strokeStyle = '#000000';
+			context.lineWidth = 4;
+			context.fillStyle = '#000000';
+			context.fill();
+			context.stroke();
+		}
+		function chmura(x,y) {
+			context.beginPath();
+			context.ellipse(x+90,y+ 50, 20, 10, 0, 0, 2 * Math.PI);
+			context.strokeStyle = '#708090';
+			context.lineWidth = 1;
+			context.fillStyle = '#708090';
+			context.fill();
+			context.stroke();
+		}
+		function drzewo(x, y) {
+			context.beginPath();
+			context.moveTo(x, y);
+			context.lineTo(x + 30, y + 40);
+			context.lineTo(x + 30, y + 40);
+			context.lineTo(x + 30, y + 40);
+			context.lineTo(x - 30, y + 40);
+			context.closePath();
+			context.strokeStyle = '#001901';
+			context.lineWidth = 1;
+			context.fillStyle = '#07930d';
+			context.fill();
+			context.stroke();
+			context.beginPath();
+			context.moveTo(x - 4, y + 40);
+			context.lineTo(x + 4, y + 40);
+			context.lineTo(x + 4, y + 90);
+			context.lineTo(x - 4, y + 90);
+			context.closePath();
+			context.strokeStyle = '#160c02';
+			context.lineWidth = 2;
+			context.fillStyle = '#633308';
+			context.fill();
+			context.stroke();
+		}
+		function woda(){
+			context.beginPath();
+			context.ellipse(40,240, 90, 30, 0, 0, 2 * Math.PI);
+			context.strokeStyle = '#1E90FF';
+			context.lineWidth = 2;
+			context.fillStyle = '#1E90FF';
+			context.fill();
+			context.stroke();
+		}
+		function komin(){
+			context.beginPath();
+			context.rect(260, 50, 30, 40);
+			context.strokeStyle = '#000000';
+			context.lineWidth = 2;
+			context.fillStyle = '#A52A2A';
+			context.fill();
+			context.stroke();
+		}
+		function droga() {
+			context.translate(0, 345);
+			context.beginPath();
+			context.moveTo(0, 0);
+			context.quadraticCurveTo(210, -50, 210, -165);
+			context.strokeStyle = '#663300';
+			context.lineWidth = 20;
+			context.stroke();
+		}
+		function Rysunek() {
+			niebo();
+			slonce();
+			chmura(140,-20);
+			chmura(-70,10);
+			chmura(-10,-25);
+			chmura(13,5);
+			chmura(-35,0);
+			chmura(80,5);
+			chmura(130,8);
+			woda();
+			drzewo(40, 200);
+			drzewo(70, 100);
+			drzewo(20, 120);
+			drzewo(260, 205);
+			dom();
+			drzwi1();
+			drzwi2();
+			daszek();
+			klamkakulka(0,0);
+			klamkakulka(12,0);
+			droga();	
+		}
+		
+		window.addEventListener("load", Rysunek, true);
+
+	</script>
+</body>
+</html>
